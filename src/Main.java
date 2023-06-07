@@ -1,4 +1,6 @@
 import java.util.*;
+import java.time.ZonedDateTime;
+import java.time.ZoneOffset;
 
 public class Main {
     public static void main(String[] args) {
@@ -53,11 +55,14 @@ public class Main {
                         if (inputRoomNum.equals(hotel.getReservations().get(i).getRoom().getRoomId()) && inputDate.equals(hotel.getReservations().get(i).getDate())) {
                             System.out.println("예약불가 이미 예약이 있습니다.");
                         } else if (inputRoomNum.equals("101")) {
-                            System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, room1, inputDate) + " 입니다.");
+                            ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);
+                            System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, room1, now) + " 입니다.");
                         } else if (inputRoomNum.equals("102")) {
-                            System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, room2, inputDate) + " 입니다.");
+                            ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);
+                            System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, room2, now) + " 입니다.");
                         } else if (inputRoomNum.equals("103")) {
-                            System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, room3, inputDate) + " 입니다.");
+                            ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);
+                            System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, room3, now) + " 입니다.");
                         }
                     }
                     break;
