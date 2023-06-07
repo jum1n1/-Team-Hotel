@@ -1,19 +1,43 @@
+import java.util.UUID;
+
 public class Reservation {
+    private String reservationId;
+    private Room room;
+    private Customer customer;
+    private String date;
 
-    public String clientName;
-    public int clientPhoneNumber;
-    public int roomNumber;
-    public int createdAt;
-    public int reservationNumber;
-
-
-    Reservation(String name, int roomNumber, int phoneNumber, int createdAt, int reservationNnumber) {
-        this.clientName = name;
-        this.clientPhoneNumber = phoneNumber;
-        this.roomNumber = roomNumber;
-        this.createdAt = createdAt;
-        this.reservationNumber = reservationNumber;
-
+    public Reservation(Room room, Customer customer, String date) {
+        this.reservationId = UUID.randomUUID().toString();
+        this.room = room;
+        this.customer = customer;
+        this.date = date;
     }
 
+    public String getReservationId() {
+        return reservationId;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 }

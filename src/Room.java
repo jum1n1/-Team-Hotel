@@ -1,28 +1,35 @@
 public class Room {
-    public int roomNumber;
-    public String roomType;
-    public int roomPrice;
-    public int getroomNumber() {
-        return roomNumber;
-    }
-    public String getroomType() {
-        return roomType;
-    }
-    public int getroomPrice() {
-        return roomPrice;
+    private String roomId;
+    private int size;
+    private double cost;
+
+    public Room(String roomId, int size, double cost) {
+        this.roomId = roomId;
+        this.size = size;
+        this.cost = cost;
     }
 
-    Room(int number, String type, int price) {
-        this.roomNumber = number;
-        this.roomType = type;
-        this.roomPrice = price;
+    public String getRoomId() {
+        return roomId;
     }
 
-    public Room() {
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
     }
 
+    public int getSize() {
+        return size;
+    }
 
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
 }
-
-
-
