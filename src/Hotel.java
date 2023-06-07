@@ -7,12 +7,17 @@ public class Hotel {
     // 방 예약 ( 성수님)
     public String reserveRoom(Customer customer, Room room, String date) {
         // 구현 해야 할 부분
-        return aa.getReservationId();
     }
 
     // 예약 취소 ( 현우님)
     public void cancelReservation(String reservationId) {
         // 구현 해야 할 부분
+        Scanner sc = new Scanner(System.in);
+        String ans=sc.nextLine();
+
+
+
+
     }
 
     // 모든 예약 목록 조회 ( 디스플레이 되는 곳에서 사용할 수 있게 은영님 )
