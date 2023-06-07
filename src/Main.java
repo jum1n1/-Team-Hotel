@@ -56,13 +56,13 @@ public class Main {
                             System.out.println("예약불가 이미 예약이 있습니다.");
                         } else if (inputRoomNum.equals("101")) {
                             ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);
-                            System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, room1, now) + " 입니다.");
+                            System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, room1, inputDate) + " 입니다.");
                         } else if (inputRoomNum.equals("102")) {
                             ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);
-                            System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, room2, now) + " 입니다.");
+                            System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, room2, inputDate) + " 입니다.");
                         } else if (inputRoomNum.equals("103")) {
                             ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);
-                            System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, room3, now) + " 입니다.");
+                            System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, room3, inputDate) + " 입니다.");
                         }
                     }
                     break;
