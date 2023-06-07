@@ -6,9 +6,9 @@ public class Hotel {
 
     // 방 예약 ( 성수님)
     public String reserveRoom(Customer customer, Room room, String date) {
-//        Reservation temp = new Reservation(room, customer, date);
-//        reservations.add(temp);
-//        return temp.getReservationId();
+        Reservation reservationInput = new Reservation(room, customer, date);
+        reservations.add(reservationInput);
+        return reservationInput.getReservationId();
     }
 
     // 예약 취소 ( 현우님)
