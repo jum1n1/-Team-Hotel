@@ -7,7 +7,9 @@ public class Hotel {
     // 방 예약 ( 성수님)
     public String reserveRoom(Customer customer, Room room, String date) {
         // 구현 해야 할 부분
-        return aa.getReservationId();
+        Reservation reservationInput = new Reservation(room, customer, date);
+        reservations.add(reservationInput);
+        return reservationInput.getReservationId();
     }
 
     // 예약 취소 ( 현우님)
@@ -23,6 +25,7 @@ public class Hotel {
     // 특정 고객의 예약 목록 조회 (주민님)
     public List<Reservation> getReservationsByCustomer(Customer customer) {
         // 구현 해야 할 부분
+        return null;
     }
 
     public void addRoom(Room room) {
