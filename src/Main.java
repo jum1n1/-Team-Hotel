@@ -28,6 +28,38 @@ public class Main {
             switch (input) {
                 case "1":
                     // 방 예약 기능
+                    System.out.println("이름입력");
+                    String name = scanner.nextLine();
+
+                    System.out.println("폰번호입력");
+                    String phoneNumber = scanner.nextLine();
+
+                    System.out.println("소지금입력");
+                    double money = scanner.nextDouble();
+
+                    Customer customer = new Customer(name, phoneNumber, money);
+
+                    for (int i = 0; i < hotel.getRooms().size(); i++) {
+                        System.out.println("호수 : " + hotel.getRooms().get(i).getRoomId() + " | 방사이즈 : " + hotel.getRooms().get(i).getSize() + " | 가격 : " + hotel.getRooms().get(i).getCost());
+                    }
+
+                    System.out.println("원하시는 방을 선택해주세요:");
+                    String inputRoomNum = scanner.nextLine();
+
+                    System.out.println("원하시는 예약날짜를 선택해주세요:");
+                    String inputDate = scanner.nextLine();
+
+                    for (int i = 0; i < hotel.getReservations().size(); i++) {
+                        if (inputRoomNum.equals(hotel.getReservations().get(i).getRoom().getRoomId()) && inputDate.equals(hotel.getReservations().get(i).getDate())) {
+                            System.out.println("예약불가 이미 예약이 있습니다.");
+                        } else if (inputRoomNum.equals("101")) {
+                            System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, room1, inputDate) + " 입니다.");
+                        } else if (inputRoomNum.equals("102")) {
+                            System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, room2, inputDate) + " 입니다.");
+                        } else if (inputRoomNum.equals("103")) {
+                            System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, room3, inputDate) + " 입니다.");
+                        }
+                    }
                     break;
 
                 case "2":
