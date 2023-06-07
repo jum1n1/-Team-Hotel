@@ -1,5 +1,3 @@
-package HOTEL_number_six;
-
 import static HOTEL_number_six.hotelDisplay.hotelMainScreen;
 
 public class Hotel {

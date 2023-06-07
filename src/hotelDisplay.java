@@ -1,6 +1,3 @@
-package HOTEL_number_six;
-
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

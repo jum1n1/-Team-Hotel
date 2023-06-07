@@ -1,5 +1,3 @@
-package HOTEL_number_six;
-
 public class Client {
 
     public String clientName;
