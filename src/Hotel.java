@@ -26,7 +26,7 @@ public class Hotel {
     public Reservation findReservation(String reservationId) { //id값 받아서 예약 찾아서 반환해주는 메소드
         Reservation targetReservation = null; // null로 선언 및 초기화.
         for (Reservation reservations : reservations) {  //받은 Id값이랑 같은 값이 나올때까지 반복문.
-            if (reservations.getReservationId() != reservationId) {
+            if (!reservations.getReservationId().equals(reservationId)) {
                 continue;
             } else {
                 targetReservation = reservations; // 맞는게 나오면 targetReservation에 할당.
@@ -37,19 +37,22 @@ public class Hotel {
     }
 
     // 모든 예약 목록 조회 ( 디스플레이 되는 곳에서 사용할 수 있게 은영님 )
-    public List<Reservation> getAllReservations(Reservation reservation) {
-        Iterator<Reservation> it = reservations.iterator();
-        while (it.hasNext()) {
-            System.out.println(it.next());
+    public void getAllReservations() {
+        if(reservations.isEmpty()){
+            System.out.println("예약이 없습니다.");
+        } else {
+            Iterator<Reservation> it = reservations.iterator();
+            while (it.hasNext()) {
+                System.out.println(it.next());
+            }
         }
-        return null;
     }   // 특정 고객의 예약 목록 조회 (주민님)
     // 예약번호를 reservationId으로 받고
     // 반복문 돌려서 배열 인덱스가 맞는 것이 나오면 출력
     public Reservation getReservationsByCustomer(String reservationId){
         Reservation reservationConfirm = null;
         for (int i = 0; i < reservations.size(); i++) {
-            if (reservationId == reservations.get(i).getReservationId()) {
+            if (Objects.equals(reservationId, reservations.get(i).getReservationId())) {
                 reservationConfirm = reservations.get(i);
             }
         }

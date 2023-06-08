@@ -106,7 +106,7 @@ public class Main {
                     // 방 목록 보기 기능
                     greeting();
                     System.out.println(" [ 객실 목록 조회하기 ] ");
-                    hotel.getAllRooms(); //  모든 방 보여주기 구현하기
+                    hotel.getAllRooms(); // todo 모든 방 보여주기 구현하기
                     break;
 
                 case "3":
@@ -116,8 +116,12 @@ public class Main {
                             "\n예약번호를 입력해주세요.");
                     String ans= scanner.nextLine();
                     Reservation targetReservation = hotel.getReservationsByCustomer(ans);
-                    System.out.println("예약 정보는 : \n"+targetReservation.getRoom()+targetReservation.getDate());
-                    break;
+                    if (targetReservation==null){
+                        System.out.println("해당 예약이 없습니다.");
+                    } else {
+                        System.out.println("예약 정보는 : \n" + targetReservation.getRoom() + targetReservation.getDate()); //todo 포맷다듬기
+                        break;
+                    }
 
                 case "4":
                     //
@@ -137,13 +141,12 @@ public class Main {
                     System.out.println(">>");
                     int managerInput = scanner.nextInt();
                     if (managerInput == 1) {
-//                        getAllReservations();// 모든 예약 조회 메소드.
+                        hotel.getAllReservations();// 모든 예약 조회 메소드. todo 모든 예약조회 관리자모드
                     } else {
                         System.out.println(" [ 프로그램을 종료합니다. ] ");
                         scanner.close();
                         System.exit(0);
                     }
-
                     break;
 
                 case "6":
