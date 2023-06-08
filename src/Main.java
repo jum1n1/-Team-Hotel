@@ -73,7 +73,7 @@ public class Main {
                     Customer customer = new Customer(name, phoneNumber, money);
 
                     System.out.println("원하시는 예약 날짜를 선택해 주세요:");
-                    String inputDate = scanner.nextLine();  // 호텔 체크인 일시
+                    String inputDate = takeDate();  // 호텔 체크인 일시
                     scanner.nextLine();
 
                     for (Room rooms : hotel.getRooms()) {
@@ -83,21 +83,29 @@ public class Main {
                     System.out.println("원하시는 객실을 선택해 주세요:");
                     String inputRoomId = scanner.nextLine();
 
-                    // 호텔 호수 입력 시 예약 완료 및 예약번호 반환
-                    Room roomPicked = null;
-                    for (Room r : hotel.getRooms()) {
-                        if (inputRoomId.equals(r.getRoomId())) {
-                            roomPicked = r;
-                            ZonedDateTime completedReservationT = ZonedDateTime.now(ZoneOffset.UTC);  // 예약일시
-                            System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, roomPicked, inputDate, completedReservationT) + " 입니다.");
-                        }
-                    }
+                    boolean t = true;
 
-                    // 호텔 이름 && 예약일  reservations 와 겹치면 x
+                    // 호텔 이름 && 예약일 == 예약내역 과 겹치면 x
                     for (Reservation rv : hotel.getReservations()) {
                         if (inputRoomId.equals(rv.getRoom().getRoomId()) && inputDate.equals(rv.getDate())) {
                             System.out.println("[예약 불가] 이미 예약이 있습니다.");
                             System.out.println("메인으로 돌아갑니다.");
+                            t = false;
+                        }
+                    }
+                    if (t == false){
+                        break;
+                    }
+                    Room roomPicked = null;
+                    for (Room r : hotel.getRooms()) {
+                        if (inputRoomId.equals(r.getRoomId())) {
+                            roomPicked = r;
+                            if (money < roomPicked.getCost()) { // 돈 모자르면 back
+                                System.out.println("예산부족!");
+                            } else {
+                                ZonedDateTime completedReservationT = ZonedDateTime.now(ZoneOffset.UTC);  // 예약일시
+                                System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, roomPicked, inputDate) + " 입니다.");
+                            }
                         }
                     }
 
@@ -122,7 +130,7 @@ public class Main {
                     System.out.println(" [ 예약 취소하기 ] ");
                     System.out.println("예약 번호를 입력해 주세요.");
                     String cancelInput = scanner.nextLine();
-//                    cancelReservation(cancelInput);
+                    hotel.cancelReservation(cancelInput);
                     break;
 
                 case "5":
@@ -150,9 +158,10 @@ public class Main {
                     System.out.println("잘못된 입력입니다. 다시 시도해 주세요.");
             }
         }
+
     }
 
-    //정규표현식으로
+    //정규표현식으로-폰번호
     public static String takePhoneNumber() {
         String returnNumber = "";
         Scanner scanner = new Scanner(System.in);
@@ -173,6 +182,27 @@ public class Main {
         }
 //        System.out.println(returnNumber); // 확인용
         return returnNumber;
+    }
+
+    //정규표현식으로-체크인 날짜
+    public static String takeDate() {
+        String returnDate = "";
+        Scanner scanner = new Scanner(System.in);
+        String date = scanner.nextLine();
+        boolean checkDate1 = Pattern.matches("^\\d{4}\\-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$", date);
+        boolean checkDate2 = Pattern.matches("^\\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", date);
+
+
+        if (!checkDate1 && !checkDate2) {
+            System.out.println("올바르지 않은 형식입니다." +
+                    "다시 입력해주세요.");
+        } else if (checkDate2) {
+            returnDate += date.substring(0, 4) + "-" + date.substring(4, 6) + "-" + date.substring(6, 8);
+        } else if (checkDate1) {
+            returnDate = date;
+        }
+//        System.out.println(returnDate); // 확인용
+        return returnDate;
     }
 
 }
