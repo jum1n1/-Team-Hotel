@@ -7,12 +7,11 @@ public class Reservation {
     private String date;
     private ZonedDateTime completedReservationT;
 
-    public Reservation(Room room, Customer customer, String date, ZonedDateTime completedReservationT) {
+    public Reservation(Room room, Customer customer, String date) {
         this.reservationId = UUID.randomUUID().toString();
         this.room = room;
         this.customer = customer;
         this.date = date;
-        this.completedReservationT = completedReservationT;
     }
 
     public String getReservationId() {
