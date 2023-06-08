@@ -6,8 +6,8 @@ public class Hotel {
     private List<Reservation> reservations = new ArrayList<>();
 
     // 방 예약 ( 성수님)
-    public String reserveRoom(Customer customer, Room room, String date, ZonedDateTime completedReservationT) {
-        Reservation reservationInput = new Reservation(room, customer, date, completedReservationT);
+    public String reserveRoom(Customer customer, Room room, String date) {
+        Reservation reservationInput = new Reservation(room, customer, date);
         reservations.add(reservationInput);
         return reservationInput.getReservationId();
     }
