@@ -107,12 +107,13 @@ public class Main {
                     "다시 입력해주세요.");
             takePhoneNumber();
         } else if(checkPhoneNum2 && ans.length()==11){
-            returnNumber += ans.substring(0,3)+"-"+ans.substring(3,7)+"-"+ans.substring(7,10);
+            returnNumber += ans.substring(0,3)+"-"+ans.substring(3,7)+"-"+ans.substring(7,11);
         } else if(checkPhoneNum2 && ans.length()==10){
-            returnNumber += ans.substring(0,3)+"-"+ans.substring(3,6)+"-"+ans.substring(6,9);
+            returnNumber += ans.substring(0,3)+"-"+ans.substring(3,6)+"-"+ans.substring(6,10);
         } else if(checkPhoneNum1){
             returnNumber = ans;
         }
+        System.out.println(returnNumber); // 확인용
         return returnNumber;
     }
 
