@@ -1,6 +1,7 @@
 import java.util.*;
 import java.time.ZonedDateTime;
 import java.time.ZoneOffset;
+import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
@@ -34,7 +35,7 @@ public class Main {
                     String name = scanner.nextLine();
 
                     System.out.println("폰번호입력");
-                    String phoneNumber = scanner.nextLine();
+                    String phoneNumber = takePhoneNumber();
 
                     System.out.println("소지금입력");
                     double money = scanner.nextDouble();
@@ -92,4 +93,17 @@ public class Main {
             }
         }
     }
+
+    public static String takePhoneNumber(){
+        Scanner scanner = new Scanner(System.in);
+        String ans = scanner.nextLine();
+        boolean checkPhoneNum = Pattern.matches("^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$", ans);
+        if(!checkPhoneNum){
+            System.out.println("올바르지 않은 형식입니다." +
+                    "다시 입력해주세요.");
+            takePhoneNumber();
+        }
+        return ans;
+    }
+
 }
