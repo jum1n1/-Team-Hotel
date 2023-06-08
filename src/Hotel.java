@@ -41,7 +41,17 @@ public class Hotel {
     }
 
     // 특정 고객의 예약 목록 조회 (주민님)
-//
+    public List<Reservation> getReservationsByCustomer(String reservationId) {
+        // 예약번호를 reservationId으로 받고
+        // 반복문 돌려서 배열 인덱스가 맞는 것이 나오면 출력
+        List<Reservation> reservationConfirm = new ArrayList<>();
+        for (int i = 0; i < reservations.size(); i++) {
+            if(reservationId == reservations.get(i).getReservationId()){
+                reservationConfirm.add(reservations.get(i));
+            }
+        }
+        return reservationConfirm;
+    }
 
     public void addRoom(Room room) {
         rooms.add(room);
