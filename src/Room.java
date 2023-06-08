@@ -39,4 +39,8 @@ public class Room {
     public void setCost(double cost) {
         this.cost = cost;
     }
+
+    public String toString(){
+        return "방번호 : "+roomId+"    방 가격 : "+cost+"    방 크기 : "+size;
+    }
 }

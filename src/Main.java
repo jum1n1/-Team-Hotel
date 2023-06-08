@@ -68,7 +68,7 @@ public class Main {
                     System.out.println("지출 가능한 예산을 입력해 주세요.");
                     double money = scanner.nextDouble();
                     Customer customer = new Customer(name, phoneNumber, money);
-                    System.out.println("원하시는 예약 날짜를 선택해 주세요:");
+                    System.out.println("원하시는 예약 날짜를 선택해 주세요 (YYYY-MM-DD):");
                     String inputDate = takeDate();  // 호텔 체크인 일시
                     scanner.nextLine();
                     for (Room rooms : hotel.getRooms()) {
@@ -142,6 +142,7 @@ public class Main {
                     int managerInput = scanner.nextInt();
                     if (managerInput == 1) {
                         hotel.getAllReservations();// 모든 예약 조회 메소드. todo 모든 예약조회 관리자모드
+
                     } else {
                         System.out.println(" [ 프로그램을 종료합니다. ] ");
                         scanner.close();
@@ -158,6 +159,8 @@ public class Main {
                     System.out.println("☆.｡･:*:･ﾟ`☆､｡･:*:･ﾟ`★.｡･:*:･ﾟ`☆.｡･:☆♪");
                     scanner.close();
                     System.exit(0);
+
+                    break;
 
                 default:
                     System.out.println("잘못된 입력입니다. 다시 시도해주세요.");
