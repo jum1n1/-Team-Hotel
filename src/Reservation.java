@@ -1,11 +1,9 @@
 import java.util.UUID;
-import java.time.ZonedDateTime;
-
 public class Reservation {
     private String reservationId;
     private Room room;
     private Customer customer;
-    private ZonedDateTime date;
+    private String date;
 
     public Reservation(Room room, Customer customer, String date) {
         this.reservationId = UUID.randomUUID().toString();
