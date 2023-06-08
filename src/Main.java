@@ -94,16 +94,26 @@ public class Main {
         }
     }
 
+    //정규표현식으로
     public static String takePhoneNumber(){
+        String returnNumber="";
         Scanner scanner = new Scanner(System.in);
         String ans = scanner.nextLine();
-        boolean checkPhoneNum = Pattern.matches("^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$", ans);
-        if(!checkPhoneNum){
+        boolean checkPhoneNum1 = Pattern.matches("^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$", ans);
+        boolean checkPhoneNum2 = Pattern.matches("^01(?:0|1|[6-9])(?:\\d{3}|\\d{4})\\d{4}$", ans);
+
+        if(!checkPhoneNum1 && !checkPhoneNum2){
             System.out.println("올바르지 않은 형식입니다." +
                     "다시 입력해주세요.");
             takePhoneNumber();
+        } else if(checkPhoneNum2 && ans.length()==11){
+            returnNumber += ans.substring(0,3)+"-"+ans.substring(3,7)+"-"+ans.substring(7,10);
+        } else if(checkPhoneNum2 && ans.length()==10){
+            returnNumber += ans.substring(0,3)+"-"+ans.substring(3,6)+"-"+ans.substring(6,9);
+        } else if(checkPhoneNum1){
+            returnNumber = ans;
         }
-        return ans;
+        return returnNumber;
     }
 
 }
