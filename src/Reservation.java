@@ -1,6 +1,3 @@
-import HOTEL_numbersix2.Customer;
-import HOTEL_numbersix2.Room;
-
 import java.util.UUID;
 
 public class Reservation {
@@ -24,6 +21,10 @@ public class Reservation {
         return room;
     }
 
+    public String getDate(){
+        return date;
+    }
+
     public void setRoom(Room room) {
         this.room = room;
     }
@@ -31,3 +32,4 @@ public class Reservation {
     public Customer getCustomer() {
         return customer;
     }
+}

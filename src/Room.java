@@ -10,7 +10,10 @@ public class Room {
         this.cost = cost;
     }
 
-    public Room(String number, int size, int cost) {
+    public Room(String roomId, int size, int cost) {
+        this.roomId = roomId;
+        this.size = size;
+        this.cost = cost;
     }
 
     public String getRoomId() {
