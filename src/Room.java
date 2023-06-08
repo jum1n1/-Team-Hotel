@@ -1,4 +1,5 @@
 public class Room {
+
     private String roomId;
     private int size;
     private double cost;
@@ -7,6 +8,9 @@ public class Room {
         this.roomId = roomId;
         this.size = size;
         this.cost = cost;
+    }
+
+    public Room(String number, int size, int cost) {
     }
 
     public String getRoomId() {
