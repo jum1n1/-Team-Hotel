@@ -1,16 +1,18 @@
+import java.time.ZonedDateTime;
 import java.util.UUID;
-
 public class Reservation {
     private String reservationId;
     private Room room;
     private Customer customer;
     private String date;
+    private ZonedDateTime completedReservationT;
 
-    public Reservation(Room room, Customer customer, String date) {
+    public Reservation(Room room, Customer customer, String date, ZonedDateTime completedReservationT) {
         this.reservationId = UUID.randomUUID().toString();
         this.room = room;
         this.customer = customer;
         this.date = date;
+        this.completedReservationT = completedReservationT;
     }
 
     public String getReservationId() {
@@ -39,5 +41,9 @@ public class Reservation {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public ZonedDateTime getCompletedReservationT() {
+        return completedReservationT;
     }
 }
