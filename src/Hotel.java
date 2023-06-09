@@ -42,7 +42,7 @@ public class Hotel {
         reservationList.add(reservationInput);
     }
 
-    // 예약 취소 ( 현우님)
+    // 예약 취소 (현우님)
     public void cancelReservation(String reservationId) {
         Reservation tempReservation = findReservation(reservationId); // 아래 메소드에서 해당 Reservation 리턴 받아오기.
         if (tempReservation == null) { //반환값이 null이면 예약번호가 없다고 출력

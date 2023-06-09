@@ -115,9 +115,10 @@ public class Main {
                     } else {
                         Reservation newReservation = new Reservation(roomPicked, customer, inputCheckInDate);
                         hotel.addReservation(newReservation);
-                        newReservation.setReservationTime(ZonedDateTime.now(ZoneOffset.UTC));  // 예약일시
+                          // 예약일시
                         System.out.println("예약완료! 예약번호는 " + newReservation.getReservationId() + " 입니다." +
-                                "\n\n예약완료시간 : \n"+newReservation.getReservationTime());
+                                    "\n\n예약완료시간 : \n"+newReservation.getReservationTime());
+//                                "\n\n예약완료시간 : \n"+newReservation.getReservationTime().format(new Date()));
                     }
                 }
             }
