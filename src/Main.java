@@ -155,6 +155,7 @@ public class Main {
         if (!checkDate1 && !checkDate2) {
             System.out.println("올바르지 않은 형식입니다." +
                     "다시 입력해주세요.");
+            takeDate();
         } else if (checkDate2) {
             returnDate += date.substring(0, 4) + "-" + date.substring(4, 6) + "-" + date.substring(6, 8);
         } else if (checkDate1) {
