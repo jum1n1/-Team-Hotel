@@ -1,5 +1,6 @@
 import java.util.*;
 
+
 public class Hotel {
     private List<Room> rooms = new ArrayList<>();
     private List<Reservation> reservations = new ArrayList<>();
@@ -14,11 +15,11 @@ public class Hotel {
     // 예약 취소 ( 현우님)
     public void cancelReservation(String reservationId) {
         Reservation tempReservation = findReservation(reservationId); // 아래 메소드에서 해당 Reservation 리턴 받아오기.
-        if(tempReservation==null){ //반환값이 null이면 예약번호가 없다고 출력
-            System.out.println("해당 예약번호의 예약이 없습니다.");
+        if (tempReservation == null) { //반환값이 null이면 예약번호가 없다고 출력
+            System.out.println("해당 번호의 예약이 존재하지 않습니다.");
         } else {
             reservations.remove(tempReservation);
-            System.out.println("예약번호 : "+tempReservation.getReservationId()+"\n해당 예약이 취소되었습니다.");
+            System.out.println("예약 번호 : " + tempReservation.getReservationId() + "\n해당 예약이 취소되었습니다.");
         }
     }
 
@@ -28,7 +29,7 @@ public class Hotel {
             if (!reservations.getReservationId().equals(reservationId)) {
                 continue;
             } else {
-                targetReservation=reservations; // 맞는게 나오면 targetReservation에 할당.
+                targetReservation = reservations; // 맞는게 나오면 targetReservation에 할당.
                 break;
             }
         }
@@ -66,22 +67,13 @@ public class Hotel {
             System.out.println(itr.next());
         }
     }
-    // 특정 고객의 예약 목록 조회 (주민님)
-    public List<Reservation> getReservationsByCustomer(String reservationId) {
-        // 예약번호를 reservationId으로 받고
-        // 반복문 돌려서 배열 인덱스가 맞는 것이 나오면 출력
-        List<Reservation> reservationConfirm = new ArrayList<>();
-        for (int i = 0; i < reservations.size(); i++) {
-            if(reservationId == reservations.get(i).getReservationId()){
-                reservationConfirm.add(reservations.get(i));
-            }
-        }
-        return reservationConfirm;
-    }
 
-    public void addRoom(Room room) {
+    public void addRoom (Room room){
         rooms.add(room);
     }
+
+
+
 
     public List<Room> getRooms() {
         return rooms;
@@ -92,10 +84,12 @@ public class Hotel {
     }
 
     public List<Reservation> getReservations() {
-        return reservations;
+        return reservations; //값 받아서 해당 reservation 리턴
     }
 
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
     }
+
+
 }
