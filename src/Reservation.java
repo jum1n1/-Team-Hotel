@@ -21,23 +21,15 @@ public class Reservation {
         return room;
     }
 
+    public String getDate(){
+        return date;
+    }
+
     public void setRoom(Room room) {
         this.room = room;
     }
 
     public Customer getCustomer() {
         return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 }
