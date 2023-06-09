@@ -93,14 +93,14 @@ public class Main {
         System.out.println("원하시는 예약 날짜를 선택해 주세요 (YYYY-MM-DD):");
         String inputDate = takeDate();  // 호텔 체크인 일시
         scanner.nextLine();
-        for (Room rooms : hotel.getRooms()) {
+        for (Room rooms : hotel.getRoomList()) {
             System.out.println("호수 : " + rooms.getRoomId() + " | 객실 크기 : " + rooms.getSize() + " | 가격 : " + rooms.getCost());
         }
         System.out.println("원하시는 객실을 선택해 주세요:");
         String inputRoomId = scanner.nextLine();
         boolean t = true;
         // 호텔 이름 && 예약일 == 예약내역 과 겹치면 x
-        for (Reservation rv : hotel.getReservations()) {
+        for (Reservation rv : hotel.getReservationList()) {
             if (inputRoomId.equals(rv.getRoom().getRoomId()) && inputDate.equals(rv.getDate())) {
                 System.out.println("[예약 불가] 이미 예약이 있습니다.");
                 System.out.println("메인으로 돌아갑니다.");
@@ -109,7 +109,7 @@ public class Main {
         }
         if (t){
             Room roomPicked = null;
-            for (Room r : hotel.getRooms()) {
+            for (Room r : hotel.getRoomList()) {
                 if (inputRoomId.equals(r.getRoomId())) {
                     roomPicked = r;
                     if (money < roomPicked.getCost()) { // 돈 모자르면 back
