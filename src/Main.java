@@ -96,6 +96,25 @@ public class Main {
                                 ZonedDateTime completedReservationT = ZonedDateTime.now(ZoneOffset.UTC);  // 예약일시
                                 System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, roomPicked, inputDate) + " 입니다.");
                             }
+
+                    System.out.println("원하시는 방을 선택해주세요:");
+                    String inputRoomNum = scanner.nextLine();
+
+                    System.out.println("원하시는 예약날짜를 선택해주세요:");
+                    String inputDate = scanner.nextLine();
+
+                    for (int i = 0; i < hotel.getReservations().size(); i++) {
+                        if (inputRoomNum.equals(hotel.getReservations().get(i).getRoom().getRoomId()) && inputDate.equals(hotel.getReservations().get(i).getDate())) {
+                            System.out.println("예약불가 이미 예약이 있습니다.");
+                        } else if (inputRoomNum.equals("101")) {
+                            ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);
+                            System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, room1, inputDate) + " 입니다.");
+                        } else if (inputRoomNum.equals("102")) {
+                            ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);
+                            System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, room2, inputDate) + " 입니다.");
+                        } else if (inputRoomNum.equals("103")) {
+                            ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);
+                            System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, room3, inputDate) + " 입니다.");
                         }
                     }
                     break;
