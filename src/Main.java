@@ -1,5 +1,3 @@
-
-
 import java.util.*;
 import java.time.ZonedDateTime;
 import java.time.ZoneOffset;
@@ -91,79 +89,81 @@ public class Main {
         double money = scanner.nextDouble();
         Customer customer = new Customer(name, phoneNumber, money);
         System.out.println("원하시는 예약 날짜를 선택해 주세요 (YYYY-MM-DD):");
-        String inputDate = takeDate();  // 호텔 체크인 일시
+        String inputCheckInDate = takeDate();  // 호텔 체크인 일시
         scanner.nextLine();
         for (Room rooms : hotel.getRoomList()) {
             System.out.println("호수 : " + rooms.getRoomNum() + " | 객실 크기 : " + rooms.getSize() + " | 가격 : " + rooms.getCost());
         }
         System.out.println("원하시는 객실을 선택해 주세요:");
-        String inputRoomId = scanner.nextLine();
+        int inputRoomId = scanner.nextInt();
         boolean resCheck = true;
         // 호텔 이름 && 예약일 == 예약내역 과 겹치면 x
         for (Reservation rv : hotel.getReservationList()) {
-            if (inputRoomId.equals(rv.getRoom().getRoomNum()) && inputDate.equals(rv.getCheckInDate())) {
+            if (inputRoomId==rv.getRoom().getRoomNum() && inputCheckInDate.equals(rv.getCheckInDate())) {
                 System.out.println("[예약 불가] 이미 예약이 있습니다.");
                 System.out.println("메인으로 돌아갑니다.");
                 resCheck = false;
             }
         }
         if (resCheck){
-            Room roomPicked = null;
+            Room roomPicked;
             for (Room r : hotel.getRoomList()) {
-                if (inputRoomId.equals(r.getRoomNum())) {
+                if (inputRoomId==r.getRoomNum()) {
                     roomPicked = r;
                     if (money < roomPicked.getCost()) { // 돈 모자르면 back
                         System.out.println("예산부족!");
                     } else {
-                        Reservation newReservation = new Reservation(roomPicked, customer, inputDate);
+                        Reservation newReservation = new Reservation(roomPicked, customer, inputCheckInDate);
+                        hotel.addReservation(newReservation);
                         newReservation.setReservationTime(ZonedDateTime.now(ZoneOffset.UTC));  // 예약일시
-                        System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, roomPicked, inputDate) + " 입니다.");
+                        System.out.println("예약완료! 예약번호는 " + newReservation.getReservationId() + " 입니다." +
+                                "\n\n예약완료시간 : \n"+newReservation.getReservationTime());
                     }
                 }
             }
         }
     }
 
-    //1-1정규표현식으로 데이터 받기
-    public static String takePhoneNumber() {
-        String returnNumber = "";
-        Scanner scanner = new Scanner(System.in);
-        String ans = scanner.nextLine();
-        boolean checkPhoneNum1 = Pattern.matches("^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$", ans);
-        boolean checkPhoneNum2 = Pattern.matches("^01(?:0|1|[6-9])(?:\\d{3}|\\d{4})\\d{4}$", ans);
+        //1-1정규표현식으로 데이터 받기
+        public static String takePhoneNumber() {
+            String returnNumber = "";
+            Scanner scanner = new Scanner(System.in);
+            String ans = scanner.nextLine();
+            boolean checkPhoneNum1 = Pattern.matches("^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$", ans);
+            boolean checkPhoneNum2 = Pattern.matches("^01(?:0|1|[6-9])(?:\\d{3}|\\d{4})\\d{4}$", ans);
 
-        if (!checkPhoneNum1 && !checkPhoneNum2) {
-            System.out.println("올바르지 않은 형식입니다." +
-                    "다시 입력해주세요.");
-            takePhoneNumber();
-        } else if (checkPhoneNum2 && ans.length() == 11) {
-            returnNumber += ans.substring(0, 3) + "-" + ans.substring(3, 7) + "-" + ans.substring(7, 11);
-        } else if (checkPhoneNum2 && ans.length() == 10) {
-            returnNumber += ans.substring(0, 3) + "-" + ans.substring(3, 6) + "-" + ans.substring(6, 10);
-        } else if (checkPhoneNum1) {
-            returnNumber = ans;
+            if (!checkPhoneNum1 && !checkPhoneNum2) {
+                System.out.println("올바르지 않은 형식입니다." +
+                        "다시 입력해주세요.");
+                takePhoneNumber();
+            } else if (checkPhoneNum2 && ans.length() == 11) {
+                returnNumber += ans.substring(0, 3) + "-" + ans.substring(3, 7) + "-" + ans.substring(7, 11);
+            } else if (checkPhoneNum2 && ans.length() == 10) {
+                returnNumber += ans.substring(0, 3) + "-" + ans.substring(3, 6) + "-" + ans.substring(6, 10);
+            } else if (checkPhoneNum1) {
+                returnNumber = ans;
+            }
+            System.out.println(returnNumber); // 확인용
+            return returnNumber;
         }
-        System.out.println(returnNumber); // 확인용
-        return returnNumber;
-    }
 
-    public static String takeDate() {
-        String returnDate = "";
-        Scanner scanner = new Scanner(System.in);
-        String date = scanner.nextLine();
-        boolean checkDate1 = Pattern.matches("^\\d{4}\\-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$", date);
-        boolean checkDate2 = Pattern.matches("^\\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", date);
-        if (!checkDate1 && !checkDate2) {
-            System.out.println("올바르지 않은 형식입니다." +
-                    "다시 입력해주세요.");
-            takeDate();
-        } else if (checkDate2) {
-            returnDate += date.substring(0, 4) + "-" + date.substring(4, 6) + "-" + date.substring(6, 8);
-        } else if (checkDate1) {
-            returnDate = date;
+        public static String takeDate() {
+            String returnDate = "";
+            Scanner scanner = new Scanner(System.in);
+            String date = scanner.nextLine();
+            boolean checkDate1 = Pattern.matches("^\\d{4}\\-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$", date);
+            boolean checkDate2 = Pattern.matches("^\\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$", date);
+            if (!checkDate1 && !checkDate2) {
+                System.out.println("올바르지 않은 형식입니다." +
+                        "다시 입력해주세요.");
+                takeDate();
+            } else if (checkDate2) {
+                returnDate += date.substring(0, 4) + "-" + date.substring(4, 6) + "-" + date.substring(6, 8);
+            } else if (checkDate1) {
+                returnDate = date;
+            }
+            return returnDate;
         }
-        return returnDate;
-    }
 
 
     //2. 모든 객실보기
@@ -180,14 +180,16 @@ public class Main {
                 "\n예약번호를 입력해주세요.");
         String ans= scanner.nextLine();
         Reservation targetReservation = hotel.getReservationsByCustomer(ans);
+        System.out.println(targetReservation+" : targetRV 출력");
         if (targetReservation==null){
             System.out.println("해당 예약이 없습니다.");
         } else {
             System.out.println("이름 : " + targetReservation.getCustomer().getName() +
-                    " | 객실 호수 : " + targetReservation.getRoom().getRoomId() +
-                    " | 객실 사이즈 : " + targetReservation.getRoom().getSize() +
-                    " | 체크인 : " + targetReservation.getDate() +
-                    " | 객실가격 : " + targetReservation.getRoom().getCost()
+                    "\n | 객실 호수 : " + targetReservation.getRoom().getRoomNum() +
+                    "\n | 객실 사이즈 : " + targetReservation.getRoom().getSize() +
+                    "\n | 체크인 날짜 : " + targetReservation.getCheckInDate() +
+                    "\n | 객실가격 : " + targetReservation.getRoom().getCost() +
+                    "\n | 예약 일시 : " + targetReservation.getReservationTime()
             );
         }
     }

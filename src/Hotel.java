@@ -38,10 +38,8 @@ public class Hotel {
 
 
     // 1. 방 예약 ( 성수님)
-    public String reserveRoom(Customer customer, Room room, String date) { //메소드명은 reserveRoom인데 반환값이 Id라서 헷갈림.
-        Reservation reservationInput = new Reservation(room, customer, date);
+    public void addReservation(Reservation reservationInput) { //메소드명은 reserveRoom인데 반환값이 Id라서 헷갈림.
         reservationList.add(reservationInput);
-        return reservationInput.getReservationId();
     }
 
     // 예약 취소 ( 현우님)
@@ -84,7 +82,7 @@ public class Hotel {
     public Reservation getReservationsByCustomer(String reservationId){
         Reservation reservationConfirm = null;
         for (int i = 0; i < reservationList.size(); i++) {
-            if (Objects.equals(reservationId, reservationList.get(i).getReservationId())) {
+            if (reservationList.get(i).getReservationId().equals(reservationId)) {
                 reservationConfirm = reservationList.get(i);
             }
         }
