@@ -54,10 +54,10 @@ public class Main {
             System.out.println("");
             System.out.println(">>");
 
-            String input = scanner.nextLine();
+            int input = scanner.nextInt();
 
             switch (input) {
-                case "1":
+                case 1:
                     // 방 예약 기능
                     greeting();
                     System.out.println(" [ 객실 예약하기 ] ");
@@ -102,14 +102,14 @@ public class Main {
                     }
                     break;
 
-                case "2":
+                case 2:
                     // 방 목록 보기 기능
                     greeting();
                     System.out.println(" [ 객실 목록 조회하기 ] ");
                     hotel.getAllRooms(); // todo 모든 방 보여주기 구현하기
                     break;
 
-                case "3":
+                case 3:
                     // 예약 정보 검색 기능
                     greeting();
                     System.out.println(" [ 예약 정보 확인하기 ] " +
@@ -123,7 +123,7 @@ public class Main {
                         break;
                     }
 
-                case "4":
+                case 4:
                     //
                     // 예약 취소하기
                     greeting();
@@ -133,7 +133,7 @@ public class Main {
                     hotel.cancelReservation(cancelInput);
                     break;
 
-                case "5":
+                case 5:
                     //관리자 모드
                     System.out.println(" [ 관리자 모드 ] ");
                     System.out.println("1. 예약 목록 조회하기");
@@ -150,7 +150,7 @@ public class Main {
                     }
                     break;
 
-                case "6":
+                case 6:
                     System.out.println("프로그램을 종료합니다.");
                     greeting();
                     System.out.println(" [ 프로그램을 종료합니다. ] ");
