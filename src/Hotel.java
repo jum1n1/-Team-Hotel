@@ -5,6 +5,40 @@ public class Hotel {
     private List<Room> rooms = new ArrayList<>();
     private List<Reservation> reservations = new ArrayList<>();
 
+
+    Hotel(){
+        roomInit();
+    }
+
+    private void roomInit (){
+        // Room 객체 생성
+        Room room1 = new Room("101", 12, 100000);  // 방 번호, 크기, 비용
+        Room room2 = new Room("102", 12, 100000);
+        Room room3 = new Room("103", 12, 100000);
+        Room room4 = new Room("201", 20, 150000);
+        Room room5 = new Room("202", 20, 150000);
+        Room room6 = new Room("203", 20, 150000);
+        Room room7 = new Room("301", 30, 200000);
+        Room room8 = new Room("302", 30, 200000);
+        Room room9 = new Room("303", 30, 200000);
+        Room room10 = new Room("401", 50, 400000);
+
+        // Hotel 객체 안에 Room 객체를 추가
+        addRoom(room1);
+        addRoom(room2);
+        addRoom(room3);
+        addRoom(room4);
+        addRoom(room5);
+        addRoom(room6);
+        addRoom(room7);
+        addRoom(room8);
+        addRoom(room9);
+        addRoom(room10);
+    }
+
+
+
+
     // 방 예약 ( 성수님)
     public String reserveRoom(Customer customer, Room room, String date) {
         Reservation reservationInput = new Reservation(room, customer, date);
@@ -71,9 +105,6 @@ public class Hotel {
     public void addRoom (Room room){
         rooms.add(room);
     }
-
-
-
 
     public List<Room> getRooms() {
         return rooms;
