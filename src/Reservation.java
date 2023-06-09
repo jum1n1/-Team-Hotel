@@ -1,16 +1,20 @@
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 public class Reservation {
     private String reservationId;
     private Room room;
     private Customer customer;
-    private String date;
+    private String checkInDate;
+    private ZonedDateTime reservationTime;
 
-    public Reservation(Room room, Customer customer, String date) {
+    public Reservation(Room room, Customer customer, String checkInDatedate) {
         this.reservationId = UUID.randomUUID().toString();
         this.room = room;
         this.customer = customer;
-        this.date = date;
+        this.checkInDate = checkInDatedate;
+        this.reservationTime = ZonedDateTime.now(ZoneOffset.UTC);
     }
 
     public String getReservationId() {
@@ -21,8 +25,8 @@ public class Reservation {
         return room;
     }
 
-    public String getDate(){
-        return date;
+    public String getCheckInDate(){
+        return checkInDate;
     }
 
     public void setRoom(Room room) {
@@ -31,5 +35,12 @@ public class Reservation {
 
     public Customer getCustomer() {
         return customer;
+    }
+
+    public ZonedDateTime getReservationTime() {
+        return reservationTime;
+    }
+    public void setReservationTime(ZonedDateTime reservationTime) {
+        this.reservationTime = reservationTime;
     }
 }

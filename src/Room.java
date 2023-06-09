@@ -1,27 +1,27 @@
 public class Room {
 
-    private String roomId;
+    private int roomNum;
     private int size;
     private double cost;
 
-    public Room(String roomId, int size, double cost) {
-        this.roomId = roomId;
+    public Room(int roomNum, int size, double cost) {
+        this.roomNum = roomNum;
         this.size = size;
         this.cost = cost;
     }
 
-    public Room(String roomId, int size, int cost) {
-        this.roomId = roomId;
+    public Room(int roomNum, int size, int cost) {
+        this.roomNum = roomNum;
         this.size = size;
         this.cost = cost;
     }
 
-    public String getRoomId() {
-        return roomId;
+    public int getRoomNum() {
+        return roomNum;
     }
 
-    public void setRoomId(String roomId) {
-        this.roomId = roomId;
+    public void setRoomNum(int roomNum) {
+        this.roomNum = roomNum;
     }
 
     public int getSize() {
@@ -41,6 +41,6 @@ public class Room {
     }
 
     public String toString(){
-        return "방번호 : "+roomId+"    방 가격 : "+cost+"    방 크기 : "+size;
+        return "방번호 : "+ roomNum +"    방 가격 : "+cost+"    방 크기 : "+size;
     }
 }

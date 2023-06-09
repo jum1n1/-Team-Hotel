@@ -94,28 +94,29 @@ public class Main {
         String inputDate = takeDate();  // 호텔 체크인 일시
         scanner.nextLine();
         for (Room rooms : hotel.getRoomList()) {
-            System.out.println("호수 : " + rooms.getRoomId() + " | 객실 크기 : " + rooms.getSize() + " | 가격 : " + rooms.getCost());
+            System.out.println("호수 : " + rooms.getRoomNum() + " | 객실 크기 : " + rooms.getSize() + " | 가격 : " + rooms.getCost());
         }
         System.out.println("원하시는 객실을 선택해 주세요:");
         String inputRoomId = scanner.nextLine();
-        boolean t = true;
+        boolean resCheck = true;
         // 호텔 이름 && 예약일 == 예약내역 과 겹치면 x
         for (Reservation rv : hotel.getReservationList()) {
-            if (inputRoomId.equals(rv.getRoom().getRoomId()) && inputDate.equals(rv.getDate())) {
+            if (inputRoomId.equals(rv.getRoom().getRoomNum()) && inputDate.equals(rv.getCheckInDate())) {
                 System.out.println("[예약 불가] 이미 예약이 있습니다.");
                 System.out.println("메인으로 돌아갑니다.");
-                t = false;
+                resCheck = false;
             }
         }
-        if (t){
+        if (resCheck){
             Room roomPicked = null;
             for (Room r : hotel.getRoomList()) {
-                if (inputRoomId.equals(r.getRoomId())) {
+                if (inputRoomId.equals(r.getRoomNum())) {
                     roomPicked = r;
                     if (money < roomPicked.getCost()) { // 돈 모자르면 back
                         System.out.println("예산부족!");
                     } else {
-                        ZonedDateTime completedReservationT = ZonedDateTime.now(ZoneOffset.UTC);  // 예약일시
+                        Reservation newReservation = new Reservation(roomPicked, customer, inputDate);
+                        newReservation.setReservationTime(ZonedDateTime.now(ZoneOffset.UTC));  // 예약일시
                         System.out.println("예약완료! 예약번호는 " + hotel.reserveRoom(customer, roomPicked, inputDate) + " 입니다.");
                     }
                 }
@@ -181,7 +182,7 @@ public class Main {
         if (targetReservation==null){
             System.out.println("해당 예약이 없습니다.");
         } else {
-            System.out.println("예약 번호 \'"+ans+"\'의 예약조회 결과입니다.\n 방 이름 : " + targetReservation.getRoom() +"\n예약 일시"+targetReservation.getDate()); //todo 포맷다듬기
+            System.out.println("예약 번호 \'"+ans+"\'의 예약조회 결과입니다.\n 방 이름 : " + targetReservation.getRoom() +"\n예약 일시"+targetReservation.getCheckInDate()); //todo 포맷다듬기
         }
     }
 

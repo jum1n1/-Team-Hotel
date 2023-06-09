@@ -12,16 +12,16 @@ public class Hotel {
 
     // Room 객체 생성 및 리스트 추가 메소드
     private void roomInit (){
-        Room room1 = new Room("101", 12, 100000);  // 방 번호, 크기, 비용
-        Room room2 = new Room("102", 12, 100000);
-        Room room3 = new Room("103", 12, 100000);
-        Room room4 = new Room("201", 20, 150000);
-        Room room5 = new Room("202", 20, 150000);
-        Room room6 = new Room("203", 20, 150000);
-        Room room7 = new Room("301", 30, 200000);
-        Room room8 = new Room("302", 30, 200000);
-        Room room9 = new Room("303", 30, 200000);
-        Room room10 = new Room("401", 50, 400000);
+        Room room1 = new Room(101, 12, 100000);  // 방 번호, 크기, 비용
+        Room room2 = new Room(102, 12, 100000);
+        Room room3 = new Room(103, 12, 100000);
+        Room room4 = new Room(201, 20, 150000);
+        Room room5 = new Room(202, 20, 150000);
+        Room room6 = new Room(203, 20, 150000);
+        Room room7 = new Room(301, 30, 200000);
+        Room room8 = new Room(302, 30, 200000);
+        Room room9 = new Room(303, 30, 200000);
+        Room room10 = new Room(401, 50, 400000);
 
         // Hotel 객체 안에 Room 객체를 추가
         addRoom(room1);
@@ -33,7 +33,7 @@ public class Hotel {
         addRoom(room7);
         addRoom(room8);
         addRoom(room9);
-        addRoom(room10); //안에 변수명 굳이 안만들고 바로 생성자로 넣는게 낫나..? 어차피 변수명 안쓰는데.
+        addRoom(room10); //안에 변수명 굳이 안만들고 바로 생성자로 넣는게 낫나..? 변수명을 쓸 일을 대비하는 게 좋을까?
     }
 
 
