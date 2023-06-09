@@ -182,7 +182,12 @@ public class Main {
         if (targetReservation==null){
             System.out.println("해당 예약이 없습니다.");
         } else {
-            System.out.println("예약 번호 \'"+ans+"\'의 예약조회 결과입니다.\n 방 이름 : " + targetReservation.getRoom() +"\n예약 일시"+targetReservation.getDate()); //todo 포맷다듬기
+            System.out.println("이름 : " + targetReservation.getCustomer().getName() +
+                    " | 객실 호수 : " + targetReservation.getRoom().getRoomId() +
+                    " | 객실 사이즈 : " + targetReservation.getRoom().getSize() +
+                    " | 체크인 : " + targetReservation.getDate() +
+                    " | 객실가격 : " + targetReservation.getRoom().getCost()
+            );
         }
     }
 
